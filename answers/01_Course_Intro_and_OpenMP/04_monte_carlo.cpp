@@ -5,8 +5,7 @@
 using namespace std;
 
 int main() {
-  unsigned int seed = 0;
-  default_random_engine re{seed};
+  unsigned int seed = 10;
   uniform_real_distribution<double> zero_to_one{0.0, 1.0};
 
   int n = 100000000; // number of points to generate
@@ -18,6 +17,7 @@ int main() {
 
   #pragma omp parallel num_threads(threads)
   {
+    default_random_engine re{seed + omp_get_thread_num()};
     int part_counter = 0; // thread counter
     // compute n points and test if they lie within the first quadrant of a unit circle
     for (int i = 0; i < part; ++i) {
@@ -34,9 +34,9 @@ int main() {
   auto run_time = omp_get_wtime() - start_time;
   auto pi = 4 * (double(counter) / n);
 
-  cout << "Threds: " << threads << endl;
+  cout << "Threads: " << threads << endl;
+  cout << "n: " << n << endl; 
   cout << "n per Thread: " << part << endl;
   cout << "pi: " << pi << endl;
   cout << "run_time: " << run_time << " s" << endl;
-  cout << "n: " << n << endl; 
 }
