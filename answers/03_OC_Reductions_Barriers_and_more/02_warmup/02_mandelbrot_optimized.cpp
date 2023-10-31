@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <omp.h>
+#include <vector>
 
 using namespace std;
 
@@ -26,12 +27,23 @@ int main() { // generate mandelbrot pgm (portable graymap)
   const string image_name = "mandelbrot.pgm";
   remove(image_name.c_str()); // remove file from disk
   const double start = omp_get_wtime();
+  vector<string> look_up{256};
+  for (int i = 0; i < 256; ++i) { look_up[i] = to_string(i) + "\n"; }
   ofstream image(image_name); // file output stream
   if (image.is_open()) {
     image << "P2\n" << width << " " << height << " 255\n"; // pgm header
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        image << compute_pixel(j, i) << "\n"; // write pixel value
+#pragma omp parallel
+    {
+      string buffer;
+      buffer.reserve(width * 4);
+#pragma omp for schedule(dynamic) ordered
+      for (int i = 0; i < height; i++) {
+        buffer.clear();
+        for (int j = 0; j < width; j++) {
+          buffer  += look_up[compute_pixel(j, i)]; // write pixel value
+        }
+#pragma omp ordered
+        image << buffer;
       }
     }
     image.close(); // close file output stream
