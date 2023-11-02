@@ -1,11 +1,14 @@
 # Algorithm Engineering
+
 Repository for the course "Algorithm Engineering" WiSe 23/24 at Friedrich-Schiller-University Jena
 
 ## Student
+
 - Name: Johannes Franke
 - E-Mail: johannes.franke@uni-jena.de
 
 ## About this repository
+
 This repository is split into three directories:
 1. **answers**
     - contains answers to the Exam Assignments and solutions to the coding exercises
