@@ -18,7 +18,7 @@ jobs:
                 working_directory: ./paper
                 root_file: paper.tex
 
-            - name: Generate release tag
+            - name: Generate tag
               run: echo "release_tag=Build_$(date +"%Y.%m.%d_%Hh%Mmin")" >> "$GITHUB_ENV"
 
             - name: Release
