@@ -15,7 +15,8 @@ jobs:
             - name: Compile
               uses: xu-cheng/latex-action@v2
               with:
-                root_file: paper/paper.tex
+                working_directory: ./paper
+                root_file: paper.tex
 
             - name: Generate release tag
               run: echo "release_tag=Build_$(date +"%Y.%m.%d_%Hh%Mmin")" >> "$GITHUB_ENV"
