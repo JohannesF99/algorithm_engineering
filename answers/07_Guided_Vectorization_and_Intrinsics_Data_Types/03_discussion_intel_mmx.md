@@ -29,4 +29,4 @@ It introduces "packed data types", which gives programmers the flexibility to co
 I found this paragraph quit interesting, because it's about the parallel processing of large amounts of data with only one instruction and this feature also uses the "packed data types" introduced in Topic 1.
 The common elements, like pixels or audio samples have varying bit sizes. 
 The control over fixed-point formats in those elements can be a problem for programmers, but it offers more flexibility to adapt and modify those formats.
-This allowes complete control over the dynamic range of values during execution.
+This allows complete control over the dynamic range of values during execution.
