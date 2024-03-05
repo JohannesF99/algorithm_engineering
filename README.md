@@ -17,6 +17,7 @@ This repository is split into three directories:
     - the solutions for the tasks of an assignment are labeled in the order they were given in the slides<br>
       e.g.: solution for the first task => "01_task..."
 2. **paper**
-    - contains the source code for the C++ programming project
+    - contains the link to the repository of the paper
+    - a compiled file of the latest version
 3. **project**
-    - contains the source code and rendered paper as pdf-file explaining the C++ programming project
+    - contains the link to the repository of the project
